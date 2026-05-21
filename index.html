@@ -187,6 +187,31 @@ footer{background:#03050C;border-top:1px solid rgba(0,212,255,0.06);padding:64px
 .footer-bottom p{font-size:12px;color:#2A3548}
 .footer-bottom a{color:#00D4FF;text-decoration:none;font-size:12px}
 
+/* CAREERS */
+.careers{background:#080D1A;padding:100px 48px;border-top:1px solid rgba(0,212,255,0.06)}
+.careers-inner{max-width:1200px;margin:0 auto}
+.careers-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;flex-wrap:wrap;gap:24px}
+.careers-header .section-body{margin-bottom:0}
+.career-tabs{display:flex;gap:0;border-bottom:1px solid rgba(0,212,255,0.1);margin-bottom:0;overflow-x:auto}
+.career-tab-btn{background:none;border:none;color:#4A5568;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.5px;padding:16px 22px;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;display:inline-flex;align-items:center;gap:10px}
+.career-tab-btn.active{color:#00D4FF;border-bottom-color:#00D4FF}
+.career-tab-btn:hover{color:#E8ECF2}
+.career-tab-btn .count{font-size:10px;letter-spacing:1px;color:#4A5568;background:rgba(0,212,255,0.06);padding:2px 8px;font-weight:600;transition:all .2s}
+.career-tab-btn.active .count,.career-tab-btn:hover .count{color:#00D4FF;background:rgba(0,212,255,0.14)}
+.career-panel{display:none}
+.career-panel.active{display:block}
+.role-row{display:grid;grid-template-columns:2.4fr 1.4fr 110px 24px;gap:24px;align-items:center;padding:22px 24px;border-bottom:1px solid rgba(0,212,255,0.06);transition:background .2s;text-decoration:none;color:inherit}
+.role-row:hover{background:#0A1220}
+.role-row:hover .role-arrow{transform:translateX(6px);color:#00D4FF}
+.role-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#E8ECF2;letter-spacing:-0.2px}
+.role-loc{font-size:12px;color:#8A97AB;letter-spacing:0.5px}
+.role-type{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#00D4FF;border:1px solid rgba(0,212,255,0.2);padding:4px 10px;font-weight:500;justify-self:start;text-align:center}
+.role-arrow{color:#3A4A5C;font-size:18px;transition:transform .2s,color .2s;justify-self:end}
+.careers-foot{margin-top:48px;padding-top:36px;border-top:1px solid rgba(0,212,255,0.06);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.careers-foot p{font-size:13px;color:#6A7A8E;max-width:520px;line-height:1.7}
+.careers-foot a{color:#00D4FF;text-decoration:none;border-bottom:1px solid rgba(0,212,255,0.3);transition:border-color .2s}
+.careers-foot a:hover{border-bottom-color:#00D4FF}
+
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
 .hero-content>*{animation:fadeUp .8s ease both}
@@ -216,6 +241,11 @@ footer{background:#03050C;border-top:1px solid rgba(0,212,255,0.06);padding:64px
   .company-inner{grid-template-columns:1fr}
   .footer-top{grid-template-columns:1fr 1fr}
   .solutions-tabs{gap:0}
+  .careers{padding:72px 24px}
+  .role-row{grid-template-columns:1fr;gap:6px;padding:18px 0}
+  .role-type{justify-self:start}
+  .role-arrow{display:none}
+  .career-tab-btn{padding:14px 16px;font-size:12px}
 }
 </style>
 </head>
@@ -809,14 +839,108 @@ footer{background:#03050C;border-top:1px solid rgba(0,212,255,0.06);padding:64px
   </div>
 </section>
 
-<!-- CAREERS CALLOUT -->
-<section id="careers" style="background:#080D1A;padding:80px 48px;text-align:center;border-top:1px solid rgba(0,212,255,0.06)">
-  <div class="section-label">Join Our Team</div>
-  <div class="section-title" style="max-width:600px;margin:0 auto 20px">We're Building the Future of Technology Services</div>
-  <p style="color:#8A97AB;font-size:16px;max-width:520px;margin:0 auto 40px;line-height:1.8">Agisai Technology is always looking for engineers, consultants, architects, and operators who want to work on the hardest problems in technology — at global scale.</p>
-  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-    <a href="#" class="btn-primary">View Open Roles</a>
-    <a href="#" class="btn-ghost">Life at Agisai</a>
+<!-- CAREERS -->
+<section class="careers" id="careers">
+  <div class="careers-inner">
+    <div class="careers-header">
+      <div>
+        <div class="section-label">Join Our Team</div>
+        <div class="section-title">60 Open Roles.<br>One Mission.</div>
+      </div>
+      <p class="section-body">Agisai Technology is hiring across six departments — from AI research and platform engineering to cybersecurity, consulting, operations, and go-to-market. Find where you fit.</p>
+    </div>
+
+    <div class="career-tabs">
+      <button class="career-tab-btn active" data-dept="eng">Engineering & Platform <span class="count">10</span></button>
+      <button class="career-tab-btn" data-dept="sec">Cybersecurity <span class="count">10</span></button>
+      <button class="career-tab-btn" data-dept="ai">AI Research <span class="count">10</span></button>
+      <button class="career-tab-btn" data-dept="consult">Consulting & Delivery <span class="count">10</span></button>
+      <button class="career-tab-btn" data-dept="ops">Managed Services <span class="count">10</span></button>
+      <button class="career-tab-btn" data-dept="gtm">Go-to-Market & People <span class="count">10</span></button>
+    </div>
+
+    <div class="career-panel active" id="dept-eng">
+      <a class="role-row" href="#"><div class="role-title">Senior AI/ML Engineer</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Staff Platform Engineer</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Principal Cloud Architect</div><div class="role-loc">Remote — US / EMEA</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Site Reliability Engineer</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Senior DevOps Engineer</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Backend Software Engineer</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Frontend Engineer, Platform</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Senior Data Engineer</div><div class="role-loc">Remote — US / EMEA</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Mobile Engineer (iOS / Android)</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Engineering Manager, Platform</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+    </div>
+
+    <div class="career-panel" id="dept-sec">
+      <a class="role-row" href="#"><div class="role-title">Senior Security Engineer</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">SOC Analyst, Tier III</div><div class="role-loc">Washington, DC / Remote</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Senior Penetration Tester</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Threat Intelligence Lead</div><div class="role-loc">Washington, DC / Hybrid</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Zero Trust Architect</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Compliance Manager, CMMC / FedRAMP</div><div class="role-loc">Washington, DC / Hybrid</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Red Team Operator</div><div class="role-loc">Remote — US (Cleared)</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Security Operations Manager</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Cloud Security Engineer</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Identity & Access Engineer</div><div class="role-loc">Remote — US / EMEA</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+    </div>
+
+    <div class="career-panel" id="dept-ai">
+      <a class="role-row" href="#"><div class="role-title">Research Scientist, LLMs</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Applied AI Engineer</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">ML Ops Engineer</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Computer Vision Engineer</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">NLP Engineer</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Senior Data Scientist</div><div class="role-loc">Remote — US / EMEA</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">AI Governance Lead</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Research Engineer, RLHF</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Prompt Systems Engineer</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">AI Safety Researcher</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+    </div>
+
+    <div class="career-panel" id="dept-consult">
+      <a class="role-row" href="#"><div class="role-title">Principal Consultant, AI Strategy</div><div class="role-loc">New York / Remote</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Senior Consultant, Digital Transformation</div><div class="role-loc">London / Remote</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Cloud Migration Lead</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Engagement Manager</div><div class="role-loc">Remote — US / EMEA</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Solution Architect, Enterprise</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Program Director, Federal Practice</div><div class="role-loc">Washington, DC / Hybrid</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Technical Account Manager</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Implementation Consultant</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Change Management Lead</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Senior Business Analyst</div><div class="role-loc">Remote — US / EMEA</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+    </div>
+
+    <div class="career-panel" id="dept-ops">
+      <a class="role-row" href="#"><div class="role-title">NOC Engineer (Shift Lead)</div><div class="role-loc">Dallas, TX</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Managed Services Practice Lead</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Service Delivery Manager</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Infrastructure Operations Engineer</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">24/7 Support Engineer</div><div class="role-loc">Singapore / Hybrid</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Vendor Operations Manager</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Supply Chain Coordinator</div><div class="role-loc">Dallas, TX</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Global Logistics Specialist</div><div class="role-loc">Remote — EMEA</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Lifecycle Services Engineer</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Operations Analyst</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+    </div>
+
+    <div class="career-panel" id="dept-gtm">
+      <a class="role-row" href="#"><div class="role-title">Director of Sales, Federal</div><div class="role-loc">Washington, DC / Hybrid</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Director of Sales, Enterprise</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Account Executive, Healthcare</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Account Executive, Financial Services</div><div class="role-loc">New York / Remote</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Partner Manager</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Brand Marketing Manager</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Product Marketing Manager</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Senior Technical Recruiter</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">People Operations Manager</div><div class="role-loc">Remote — US</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+      <a class="role-row" href="#"><div class="role-title">Total Rewards Lead</div><div class="role-loc">Remote — Global</div><div class="role-type">Full-time</div><div class="role-arrow">→</div></a>
+    </div>
+
+    <div class="careers-foot">
+      <p>Don't see your role? We hire continuously across all six teams. <a href="#contact">Send us your resume</a> and we'll route it to the right hiring manager.</p>
+      <a href="#" class="btn-ghost">Life at Agisai</a>
+    </div>
   </div>
 </section>
 
@@ -919,6 +1043,16 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// Career tabs (scoped — independent of solutions tabs)
+document.querySelectorAll('.career-tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.career-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.career-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('dept-' + btn.dataset.dept).classList.add('active');
   });
 });
 
