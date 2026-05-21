@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Agisai Technology — Digital Transformation & Global Technology Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Instrument Sans',sans-serif;background:#05080F;color:#E8ECF2;overflow-x:hidden;cursor:none}
+
+/* CUSTOM CURSOR */
+.cursor{position:fixed;width:12px;height:12px;background:#00D4FF;border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:difference}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(0,212,255,0.4);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .12s ease}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,8,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,212,255,0.08)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-mark{width:36px;height:36px;background:linear-gradient(135deg,#00D4FF,#0066FF);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:#05080F;letter-spacing:-1px}
+.logo-text{font-family:'Syne',sans-serif;font-weight:700;font-size:18px;color:#E8ECF2;letter-spacing:1px}
+.logo-text span{color:#00D4FF}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{color:#8A97AB;font-size:13px;font-weight:500;text-decoration:none;letter-spacing:0.5px;transition:color .2s}
+.nav-links a:hover{color:#00D4FF}
+.nav-cta{background:transparent;border:1px solid #00D4FF;color:#00D4FF;font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:10px 24px;cursor:pointer;transition:all .2s;text-decoration:none}
+.nav-cta:hover{background:#00D4FF;color:#05080F}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 48px 80px}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px);background-size:60px 60px}
+.orb1{position:absolute;top:-200px;right:-100px;width:700px;height:700px;background:radial-gradient(circle,rgba(0,102,255,0.15) 0%,transparent 70%);border-radius:50%}
+.orb2{position:absolute;bottom:-200px;left:200px;width:500px;height:500px;background:radial-gradient(circle,rgba(0,212,255,0.08) 0%,transparent 70%);border-radius:50%}
+.hero-content{position:relative;z-index:1;max-width:760px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,212,255,0.3);padding:6px 16px;margin-bottom:32px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#00D4FF}
+.hero-badge-dot{width:6px;height:6px;background:#00D4FF;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.5)}}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(52px,6vw,88px);font-weight:800;line-height:0.95;letter-spacing:-2px;margin-bottom:28px}
+.hero h1 .line2{color:#00D4FF;display:block}
+.hero h1 .line3{color:#3A4A5C;display:block}
+.hero-sub{font-size:18px;color:#8A97AB;line-height:1.75;max-width:580px;margin-bottom:48px;font-weight:300}
+.hero-sub strong{color:#E8ECF2;font-weight:500}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{background:#00D4FF;color:#05080F;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:16px 40px;border:none;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-block}
+.btn-primary:hover{background:#33DDFF;transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:#E8ECF2;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:15px 40px;border:1px solid rgba(232,236,242,0.2);cursor:pointer;text-decoration:none;transition:all .2s;display:inline-block}
+.btn-ghost:hover{border-color:#E8ECF2}
+.hero-stats{position:absolute;right:48px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:32px;z-index:1}
+.stat-item{text-align:right}
+.stat-num{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:#00D4FF;line-height:1}
+.stat-label{font-size:11px;color:#4A5568;letter-spacing:1.5px;text-transform:uppercase;margin-top:4px}
+
+/* TICKER */
+.ticker{background:#0A0F1E;border-top:1px solid rgba(0,212,255,0.1);border-bottom:1px solid rgba(0,212,255,0.1);padding:14px 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-flex;gap:64px;animation:ticker 30s linear infinite}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#4A5568;font-weight:500}
+.ticker-item span{color:#00D4FF;margin-right:12px}
+
+/* SECTION BASE */
+section{padding:100px 48px}
+.section-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#00D4FF;margin-bottom:16px;font-weight:600}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(36px,4vw,56px);font-weight:800;letter-spacing:-1px;line-height:1.05;margin-bottom:20px}
+.section-body{font-size:16px;color:#8A97AB;line-height:1.8;max-width:600px;font-weight:300}
+
+/* SERVICES */
+.services{background:#05080F}
+.services-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;flex-wrap:wrap;gap:24px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(0,212,255,0.08)}
+.service-card{background:#05080F;padding:48px 36px;position:relative;overflow:hidden;transition:background .3s;cursor:default}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#00D4FF,transparent);transform:scaleX(0);transition:transform .4s}
+.service-card:hover{background:#080D1A}
+.service-card:hover::before{transform:scaleX(1)}
+.service-icon{width:52px;height:52px;margin-bottom:28px;position:relative}
+.service-icon svg{width:100%;height:100%}
+.service-num{position:absolute;top:36px;right:36px;font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:rgba(0,212,255,0.06);line-height:1}
+.service-card h3{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:14px;letter-spacing:-0.3px}
+.service-card p{font-size:13px;color:#6A7A8E;line-height:1.75;margin-bottom:20px}
+.service-tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#00D4FF;border:1px solid rgba(0,212,255,0.2);padding:4px 10px;font-weight:500}
+
+/* ATC */
+.atc{background:#080D1A;position:relative;overflow:hidden}
+.atc-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto}
+.atc-visual{position:relative;height:480px}
+.atc-screen{position:absolute;inset:0;border:1px solid rgba(0,212,255,0.15);background:#05080F;overflow:hidden}
+.atc-screen-header{height:36px;background:#080D1A;border-bottom:1px solid rgba(0,212,255,0.1);display:flex;align-items:center;padding:0 16px;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%}
+.atc-screen-body{padding:24px;height:calc(100% - 36px);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px}
+.mini-card{border:1px solid rgba(0,212,255,0.1);background:#080D1A;padding:16px;position:relative;overflow:hidden}
+.mini-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#00D4FF,#0066FF);transform:scaleX(var(--fill,0.4));transform-origin:left}
+.mini-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4A5568;margin-bottom:8px}
+.mini-val{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#00D4FF}
+.mini-sub{font-size:10px;color:#3A4A5C;margin-top:4px}
+.atc-text .section-body{max-width:100%}
+.atc-features{margin-top:36px;display:flex;flex-direction:column;gap:16px}
+.atc-feature{display:flex;gap:16px;align-items:flex-start}
+.atc-feature-icon{width:32px;height:32px;border:1px solid rgba(0,212,255,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.atc-feature-icon svg{width:16px;height:16px;stroke:#00D4FF;fill:none;stroke-width:1.5}
+.atc-feature-text h4{font-size:14px;font-weight:600;margin-bottom:4px}
+.atc-feature-text p{font-size:12px;color:#6A7A8E;line-height:1.6}
+
+/* SOLUTIONS */
+.solutions{background:#05080F}
+.solutions-tabs{display:flex;gap:0;border-bottom:1px solid rgba(0,212,255,0.1);margin-bottom:48px;overflow-x:auto}
+.tab-btn{background:none;border:none;color:#4A5568;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.5px;padding:16px 28px;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+.tab-btn.active{color:#00D4FF;border-bottom-color:#00D4FF}
+.tab-btn:hover{color:#E8ECF2}
+.tab-panel{display:none;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.tab-panel.active{display:grid}
+.tab-content h3{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.5px;margin-bottom:16px}
+.tab-content p{font-size:15px;color:#8A97AB;line-height:1.8;margin-bottom:24px}
+.tab-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.tab-list li{display:flex;gap:12px;align-items:flex-start;font-size:13px;color:#8A97AB;line-height:1.5}
+.tab-list li::before{content:'';width:6px;height:6px;background:#00D4FF;border-radius:50%;flex-shrink:0;margin-top:5px}
+.tab-metrics{display:flex;flex-direction:column;gap:16px}
+.metric-row{background:#080D1A;border:1px solid rgba(0,212,255,0.08);padding:24px;display:flex;justify-content:space-between;align-items:center;border-left:2px solid #00D4FF}
+.metric-row h4{font-size:13px;font-weight:600;margin-bottom:4px}
+.metric-row p{font-size:11px;color:#6A7A8E}
+.metric-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:#00D4FF;text-align:right;white-space:nowrap}
+
+/* INDUSTRIES */
+.industries{background:#080D1A}
+.industry-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(0,212,255,0.06);margin-top:56px}
+.industry-item{background:#080D1A;padding:36px 28px;transition:background .25s;position:relative;overflow:hidden}
+.industry-item:hover{background:#0D1525}
+.industry-item::after{content:'→';position:absolute;bottom:28px;right:28px;color:#00D4FF;font-size:18px;opacity:0;transition:opacity .2s,transform .2s;transform:translateX(-8px)}
+.industry-item:hover::after{opacity:1;transform:translateX(0)}
+.industry-icon{font-size:28px;margin-bottom:20px}
+.industry-item h4{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px}
+.industry-item p{font-size:12px;color:#6A7A8E;line-height:1.6}
+
+/* WHY AGISAI */
+.why{background:#05080F;position:relative}
+.why-grid{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start;max-width:1200px;margin:0 auto}
+.why-left .section-body{margin-top:20px}
+.why-right{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.why-card{padding:32px 28px;border:1px solid rgba(0,212,255,0.08);background:#080D1A;position:relative}
+.why-card.featured{border-color:rgba(0,212,255,0.3);background:#0A1220}
+.why-card-num{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:rgba(0,212,255,0.1);line-height:1;margin-bottom:16px}
+.why-card h4{font-size:15px;font-weight:600;margin-bottom:8px}
+.why-card p{font-size:12px;color:#6A7A8E;line-height:1.7}
+
+/* PARTNER LOGOS */
+.partners{background:#080D1A;padding:60px 48px;text-align:center}
+.partners-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#3A4A5C;margin-bottom:40px}
+.partners-row{display:flex;justify-content:center;align-items:center;gap:56px;flex-wrap:wrap}
+.partner-logo{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#2A3548;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.partner-logo:hover{color:#4A5A6E}
+
+/* COMPANY */
+.company{background:#05080F}
+.company-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto}
+.company-stats{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(0,212,255,0.08);margin-top:40px}
+.co-stat{background:#05080F;padding:32px 24px;text-align:center}
+.co-stat-num{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;color:#00D4FF;line-height:1;margin-bottom:6px}
+.co-stat-label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#4A5568}
+.company-visual{position:relative}
+.company-card{background:#080D1A;border:1px solid rgba(0,212,255,0.1);padding:48px 40px}
+.company-card h3{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:16px}
+.company-card p{font-size:14px;color:#8A97AB;line-height:1.8;margin-bottom:16px}
+.company-card .highlight{color:#00D4FF;font-weight:600}
+.timeline{margin-top:28px;display:flex;flex-direction:column;gap:0}
+.tl-item{display:flex;gap:20px;padding:16px 0;border-bottom:1px solid rgba(0,212,255,0.06)}
+.tl-item:last-child{border-bottom:none}
+.tl-year{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#00D4FF;min-width:48px}
+.tl-text{font-size:12px;color:#6A7A8E;line-height:1.6}
+
+/* CTA SECTION */
+.cta-section{background:linear-gradient(135deg,#080D1A 0%,#0A1528 50%,#080D1A 100%);padding:100px 48px;text-align:center;position:relative;overflow:hidden;border-top:1px solid rgba(0,212,255,0.1)}
+.cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(0,102,255,0.12) 0%,transparent 70%)}
+.cta-section h2{font-family:'Syne',sans-serif;font-size:clamp(44px,5vw,72px);font-weight:800;letter-spacing:-2px;line-height:1;margin-bottom:24px;position:relative}
+.cta-section p{font-size:17px;color:#8A97AB;max-width:560px;margin:0 auto 48px;line-height:1.8;position:relative}
+.cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative}
+
+/* FOOTER */
+footer{background:#03050C;border-top:1px solid rgba(0,212,255,0.06);padding:64px 48px 32px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
+.footer-brand .logo-text{font-size:20px;margin-bottom:16px;display:block}
+.footer-brand p{font-size:13px;color:#4A5568;line-height:1.75;max-width:280px}
+.footer-col h5{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#4A5568;margin-bottom:20px;font-weight:600}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{font-size:13px;color:#6A7A8E;text-decoration:none;transition:color .2s}
+.footer-col ul li a:hover{color:#00D4FF}
+.footer-bottom{border-top:1px solid rgba(0,212,255,0.06);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-bottom p{font-size:12px;color:#2A3548}
+.footer-bottom a{color:#00D4FF;text-decoration:none;font-size:12px}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+.hero-content>*{animation:fadeUp .8s ease both}
+.hero-content>*:nth-child(1){animation-delay:.1s}
+.hero-content>*:nth-child(2){animation-delay:.2s}
+.hero-content>*:nth-child(3){animation-delay:.35s}
+.hero-content>*:nth-child(4){animation-delay:.5s}
+.hero-content>*:nth-child(5){animation-delay:.6s}
+
+/* SCAN LINE EFFECT ON ATC */
+@keyframes scanline{0%{top:0}100%{top:100%}}
+.scanline{position:absolute;left:0;right:0;height:1px;background:rgba(0,212,255,0.15);animation:scanline 3s linear infinite;pointer-events:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 24px}
+  .nav-links{display:none}
+  .hero{padding:100px 24px 60px}
+  .hero-stats{display:none}
+  section{padding:72px 24px}
+  .services-grid{grid-template-columns:1fr}
+  .atc-inner{grid-template-columns:1fr}
+  .atc-visual{height:280px}
+  .tab-panel.active{grid-template-columns:1fr}
+  .industry-grid{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr}
+  .company-inner{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .solutions-tabs{gap:0}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">AT</div>
+    <span class="logo-text">AGISAI <span>TECHNOLOGY</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#solutions">Solutions</a></li>
+    <li><a href="#atc">Innovation Lab</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#company">Company</a></li>
+    <li><a href="#careers">Careers</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Talk to Us</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="grid-lines"></div>
+    <div class="orb1"></div>
+    <div class="orb2"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="hero-badge-dot"></span>Global Technology Services & Digital Transformation</div>
+    <h1>
+      Technology That<span class="line2">Moves Business</span><span class="line3">Forward.</span>
+    </h1>
+    <p class="hero-sub">Agisai Technology is a global technology services company delivering <strong>AI infrastructure, cloud architecture, cybersecurity,</strong> and <strong>digital transformation</strong> to enterprises and public-sector clients worldwide.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">Explore Our Services</a>
+      <a href="#atc" class="btn-ghost">Visit Innovation Lab</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Technology Partners</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">40+</div>
+      <div class="stat-label">Countries Served</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">99.9%</div>
+      <div class="stat-label">Uptime SLA</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2,000+</div>
+      <div class="stat-label">Certified Engineers</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item"><span>●</span>Artificial Intelligence & Machine Learning</span>
+    <span class="ticker-item"><span>●</span>Cloud Architecture & Migration</span>
+    <span class="ticker-item"><span>●</span>Cybersecurity & Zero Trust</span>
+    <span class="ticker-item"><span>●</span>Digital Transformation Consulting</span>
+    <span class="ticker-item"><span>●</span>Global Supply Chain Technology</span>
+    <span class="ticker-item"><span>●</span>Data Center Modernization</span>
+    <span class="ticker-item"><span>●</span>Network Infrastructure</span>
+    <span class="ticker-item"><span>●</span>Managed Services</span>
+    <span class="ticker-item"><span>●</span>Artificial Intelligence & Machine Learning</span>
+    <span class="ticker-item"><span>●</span>Cloud Architecture & Migration</span>
+    <span class="ticker-item"><span>●</span>Cybersecurity & Zero Trust</span>
+    <span class="ticker-item"><span>●</span>Digital Transformation Consulting</span>
+    <span class="ticker-item"><span>●</span>Global Supply Chain Technology</span>
+    <span class="ticker-item"><span>●</span>Data Center Modernization</span>
+    <span class="ticker-item"><span>●</span>Network Infrastructure</span>
+    <span class="ticker-item"><span>●</span>Managed Services</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">What We Do</div>
+      <div class="section-title">End-to-End<br>Technology Services</div>
+    </div>
+    <div class="section-body">From initial strategy and architecture through deployment and ongoing management — Agisai handles the full technology lifecycle for the world's most demanding organizations.</div>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="50" height="50" rx="4" stroke="rgba(0,212,255,0.2)" stroke-width="1"/>
+          <circle cx="26" cy="26" r="8" stroke="#00D4FF" stroke-width="1.5"/>
+          <path d="M26 10V18M26 34V42M10 26H18M34 26H42" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="26" cy="26" r="3" fill="#00D4FF"/>
+        </svg>
+      </div>
+      <h3>Artificial Intelligence</h3>
+      <p>Deploy and scale intelligent AI infrastructure. From enterprise LLM integration and ML pipelines to edge AI and intelligent automation — we architect the systems that make organizations smarter.</p>
+      <div class="service-tags">
+        <span class="tag">LLM Integration</span>
+        <span class="tag">ML Pipelines</span>
+        <span class="tag">AI Infrastructure</span>
+        <span class="tag">Data Platforms</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 52 52" fill="none">
+          <rect x="1" y="1" width="50" height="50" rx="4" stroke="rgba(0,212,255,0.2)" stroke-width="1"/>
+          <path d="M10 32C10 32 14 24 22 24C30 24 30 32 38 32C42 32 44 28 44 28" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="16" y="36" width="20" height="8" rx="2" stroke="#00D4FF" stroke-width="1.2"/>
+          <path d="M22 36V42M30 36V42" stroke="#00D4FF" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="38" cy="18" r="5" stroke="#00D4FF" stroke-width="1.2"/>
+          <circle cx="18" cy="18" r="5" stroke="#00D4FF" stroke-width="1.2"/>
+          <path d="M23 18H33" stroke="#00D4FF" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <h3>Cloud & Infrastructure</h3>
+      <p>Design and deploy multi-cloud environments, data center modernization, and global supply chain technology solutions that scale with your business demands and reduce total cost of ownership.</p>
+      <div class="service-tags">
+        <span class="tag">Multi-Cloud</span>
+        <span class="tag">Data Center</span>
+        <span class="tag">Supply Chain</span>
+        <span class="tag">Hybrid Cloud</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 52 52" fill="none">
+          <rect x="1" y="1" width="50" height="50" rx="4" stroke="rgba(0,212,255,0.2)" stroke-width="1"/>
+          <path d="M26 10L14 16V26C14 33.2 19.2 39.8 26 42C32.8 39.8 38 33.2 38 26V16L26 10Z" stroke="#00D4FF" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M20 26L24 30L32 22" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>Cybersecurity</h3>
+      <p>Comprehensive security architecture, zero-trust implementation, cyber range testing, threat intelligence, and compliance management across the entire enterprise attack surface.</p>
+      <div class="service-tags">
+        <span class="tag">Zero Trust</span>
+        <span class="tag">SOC / SIEM</span>
+        <span class="tag">Cyber Range</span>
+        <span class="tag">Compliance</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 52 52" fill="none">
+          <rect x="1" y="1" width="50" height="50" rx="4" stroke="rgba(0,212,255,0.2)" stroke-width="1"/>
+          <rect x="12" y="16" width="28" height="20" rx="2" stroke="#00D4FF" stroke-width="1.5"/>
+          <path d="M18 22H34M18 27H28" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M22 36V42M30 36V42M16 42H36" stroke="#00D4FF" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Digital Transformation</h3>
+      <p>Strategic consulting and full-cycle implementation — from legacy modernization and process automation to customer experience redesign and workforce digital enablement at enterprise scale.</p>
+      <div class="service-tags">
+        <span class="tag">Strategy</span>
+        <span class="tag">Automation</span>
+        <span class="tag">CX Design</span>
+        <span class="tag">Modernization</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 52 52" fill="none">
+          <rect x="1" y="1" width="50" height="50" rx="4" stroke="rgba(0,212,255,0.2)" stroke-width="1"/>
+          <circle cx="18" cy="22" r="6" stroke="#00D4FF" stroke-width="1.5"/>
+          <circle cx="36" cy="22" r="6" stroke="#00D4FF" stroke-width="1.5"/>
+          <path d="M10 40C10 35.6 13.6 32 18 32H20M28 32H34C38.4 32 42 35.6 42 40" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M22 30C22 30 24 34 27 34C30 34 30 30 30 30" stroke="#00D4FF" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Managed Services</h3>
+      <p>24/7 managed IT, NOC/SOC operations, cloud management, and technology lifecycle services — freeing your team to focus on business outcomes while we handle operational complexity.</p>
+      <div class="service-tags">
+        <span class="tag">NOC/SOC</span>
+        <span class="tag">24/7 Support</span>
+        <span class="tag">Cloud Mgmt</span>
+        <span class="tag">Lifecycle</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 52 52" fill="none">
+          <rect x="1" y="1" width="50" height="50" rx="4" stroke="rgba(0,212,255,0.2)" stroke-width="1"/>
+          <path d="M12 38L20 28L26 33L33 22L40 14" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="40" cy="14" r="3" fill="#00D4FF"/>
+          <rect x="10" y="36" width="32" height="2" rx="1" fill="rgba(0,212,255,0.15)"/>
+        </svg>
+      </div>
+      <h3>Software Development</h3>
+      <p>Custom enterprise software, platform engineering, API integration, and application modernization. We build the technology your organization needs when off-the-shelf solutions aren't enough.</p>
+      <div class="service-tags">
+        <span class="tag">Platform Eng</span>
+        <span class="tag">API Design</span>
+        <span class="tag">Enterprise Apps</span>
+        <span class="tag">DevSecOps</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INNOVATION LAB (ATC Equivalent) -->
+<section class="atc" id="atc">
+  <div class="atc-inner">
+    <div class="atc-visual">
+      <div class="atc-screen">
+        <div class="scanline"></div>
+        <div class="atc-screen-header">
+          <div class="dot" style="background:#FF5F57"></div>
+          <div class="dot" style="background:#FEBC2E"></div>
+          <div class="dot" style="background:#28C840"></div>
+          <span style="font-size:11px;color:#4A5568;margin-left:8px;letter-spacing:1px">AGISAI INNOVATION LAB — LIVE ENVIRONMENT</span>
+        </div>
+        <div class="atc-screen-body">
+          <div class="mini-card" style="--fill:0.78">
+            <div class="mini-label">AI Inference Load</div>
+            <div class="mini-val">78%</div>
+            <div class="mini-sub">GPU cluster utilization</div>
+          </div>
+          <div class="mini-card" style="--fill:0.94">
+            <div class="mini-label">Network Throughput</div>
+            <div class="mini-val">94Gbps</div>
+            <div class="mini-sub">Active lab sessions</div>
+          </div>
+          <div class="mini-card" style="--fill:0.62">
+            <div class="mini-label">Security Score</div>
+            <div class="mini-val">A+</div>
+            <div class="mini-sub">Zero critical alerts</div>
+          </div>
+          <div class="mini-card" style="--fill:0.99">
+            <div class="mini-label">Uptime</div>
+            <div class="mini-val">99.97%</div>
+            <div class="mini-sub">30-day rolling avg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="atc-text">
+      <div class="section-label">Agisai Innovation Lab</div>
+      <div class="section-title">Test Before<br>You Deploy.</div>
+      <p class="section-body">Our Innovation Lab is a state-of-the-art physical and virtual environment where enterprise clients can design, test, and validate complex technology architectures before committing to full-scale deployment — eliminating risk and accelerating confidence.</p>
+      <div class="atc-features">
+        <div class="atc-feature">
+          <div class="atc-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7L12 12L22 7L12 2Z"/><path d="M2 17L12 22L22 17"/><path d="M2 12L12 17L22 12"/></svg>
+          </div>
+          <div class="atc-feature-text">
+            <h4>Architecture Validation</h4>
+            <p>Test hardware and software stacks in real-world conditions with production-equivalent loads before committing capital.</p>
+          </div>
+        </div>
+        <div class="atc-feature">
+          <div class="atc-feature-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <div class="atc-feature-text">
+            <h4>On-Demand Technology Labs</h4>
+            <p>Access 300+ technology labs covering AI, networking, security, cloud, and infrastructure — remotely or on-site.</p>
+          </div>
+        </div>
+        <div class="atc-feature">
+          <div class="atc-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="atc-feature-text">
+            <h4>Cyber Range</h4>
+            <p>A live adversarial testing environment where your security team trains against simulated real-world attack scenarios.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS BY USE CASE -->
+<section class="solutions" id="solutions">
+  <div class="section-label">Solutions</div>
+  <div class="section-title" style="margin-bottom:40px">Built for Your<br>Specific Challenge</div>
+
+  <div class="solutions-tabs">
+    <button class="tab-btn active" data-tab="ai">Artificial Intelligence</button>
+    <button class="tab-btn" data-tab="cloud">Cloud & Infrastructure</button>
+    <button class="tab-btn" data-tab="cyber">Cybersecurity</button>
+    <button class="tab-btn" data-tab="transform">Digital Transformation</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-ai">
+    <div class="tab-content">
+      <h3>Enterprise AI That Actually Works</h3>
+      <p>Agisai designs and deploys AI solutions built for the complexity of real enterprise environments — not proofs of concept that never reach production.</p>
+      <ul class="tab-list">
+        <li>Private LLM deployment and fine-tuning for proprietary data environments</li>
+        <li>AI-powered supply chain optimization and demand forecasting</li>
+        <li>Intelligent document processing and knowledge management systems</li>
+        <li>ML Ops pipelines: model training, deployment, monitoring, and retraining</li>
+        <li>Edge AI and IoT inference for manufacturing, logistics, and field operations</li>
+        <li>AI governance, explainability, and bias mitigation frameworks</li>
+      </ul>
+    </div>
+    <div class="tab-metrics">
+      <div class="metric-row">
+        <div><h4>Average model deployment time</h4><p>From POC to production</p></div>
+        <div class="metric-num">6 wks</div>
+      </div>
+      <div class="metric-row">
+        <div><h4>Cost reduction via AI automation</h4><p>Average across enterprise clients</p></div>
+        <div class="metric-num">34%</div>
+      </div>
+      <div class="metric-row">
+        <div><h4>AI implementations delivered</h4><p>Enterprise production deployments</p></div>
+        <div class="metric-num">400+</div>
+      </div>
+      <div class="metric-row">
+        <div><h4>Certified AI/ML engineers</h4><p>On staff globally</p></div>
+        <div class="metric-num">280+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-cloud">
+    <div class="tab-content">
+      <h3>Cloud Architecture Without the Chaos</h3>
+      <p>Whether you're migrating legacy systems, optimizing existing cloud spend, or designing a new multi-cloud strategy, Agisai delivers the architecture that performs.</p>
+      <ul class="tab-list">
+        <li>Multi-cloud strategy across AWS, Azure, GCP, and private cloud</li>
+        <li>Data center consolidation, colocation, and edge deployments</li>
+        <li>FinOps and cloud cost optimization frameworks</li>
+        <li>Global supply chain technology and logistics systems integration</li>
+        <li>SD-WAN and network modernization for distributed organizations</li>
+        <li>Disaster recovery and business continuity architecture</li>
+      </ul>
+    </div>
+    <div class="tab-metrics">
+      <div class="metric-row">
+        <div><h4>Average cloud cost reduction</h4><p>Post-optimization</p></div>
+        <div class="metric-num">28%</div>
+      </div>
+      <div class="metric-row">
+        <div><h4>Cloud migrations completed</h4><p>Enterprise workloads moved</p></div>
+        <div class="metric-num">1,200+</div>
+      </div>
+      <div class="metric-row">
+        <div><h4>Technology supply chain partners</h4><p>Global OEM relationships</p></div>
+        <div class="metric-num">500+</div>
+      </div>
+      <div class="metric-row">
+        <div><h4>Countries with delivery capability</h4><p>Global logistics network</p></div>
+        <div class="metric-num">40+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-cyber">
+    <div class="tab-content">
+      <h3>Security Built Into Everything</h3>
+      <p>Agisai takes a security-first approach across every engagement — not as an afterthought but as foundational architecture from day one.</p>
+      <ul class="tab-list">
+        <li>Zero trust architecture design and implementation</li>
+        <li>Security operations center (SOC) build and management</li>
+        <li>SIEM, XDR, and threat detection platform deployment</li>
+        <li>Penetration testing, vulnerability management, and red team operations</li>
+        <li>Compliance and regulatory frameworks: CMMC, FedRAMP, HIPAA, PCI-DSS</li>
+        <li>Cyber range for adversarial training and tabletop exercises</li>
+      </ul>
+    </div>
+    <div class="tab-metrics">
+      <div class="metric-row">
+        <div><h4>Mean time to detect threats</h4><p>Managed SOC average</p></div>
+        <div class="metric-num">&lt;4 min</div>
+      </div>
+      <div class="metric-row">
+        <div><h4>Security certifications held</h4><p>Staff-wide: CISSP, CISM, CEH+</p></div>
+        <div class="metric-num">340+</div>
+      </div>
+      <div class="metric-row">
+        <div><h4>Compliance frameworks supported</h4><p>Across all engagements</p></div>
+        <div class="metric-num">22</div>
+      </div>
+      <div class="metric-row">
+        <div><h4>Security incidents prevented</h4><p>Last 12 months, managed clients</p></div>
+        <div class="metric-num">12K+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-transform">
+    <div class="tab-content">
+      <h3>Transformation With Measurable Outcomes</h3>
+      <p>Digital transformation isn't a project — it's an ongoing capability. Agisai embeds alongside your teams to build lasting organizational change, not one-time deliverables.</p>
+      <ul class="tab-list">
+        <li>Digital strategy and enterprise architecture consulting</li>
+        <li>Legacy application modernization and re-platforming</li>
+        <li>Intelligent process automation (IPA / RPA at scale)</li>
+        <li>Customer experience platforms and omnichannel architecture</li>
+        <li>Digital workforce enablement and change management</li>
+        <li>Innovation labs and rapid prototyping programs</li>
+      </ul>
+    </div>
+    <div class="tab-metrics">
+      <div class="metric-row">
+        <div><h4>Avg digital transformation timeline</h4><p>Strategy through deployment</p></div>
+        <div class="metric-num">9 mo</div>
+      </div>
+      <div class="metric-row">
+        <div><h4>Process automation ROI</h4><p>Average client return, year 1</p></div>
+        <div class="metric-num">3.2×</div>
+      </div>
+      <div class="metric-row">
+        <div><h4>Enterprise transformations led</h4><p>Fortune 1000 and public sector</p></div>
+        <div class="metric-num">200+</div>
+      </div>
+      <div class="metric-row">
+        <div><h4>Client satisfaction score</h4><p>Net Promoter Score</p></div>
+        <div class="metric-num">72 NPS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="industries" id="industries">
+  <div class="section-label" style="text-align:center">Industries We Serve</div>
+  <div class="section-title" style="text-align:center;margin-bottom:0">Built for the World's<br>Most Complex Sectors</div>
+  <div class="industry-grid">
+    <div class="industry-item">
+      <div class="industry-icon">🏛️</div>
+      <h4>Federal & Public Sector</h4>
+      <p>FedRAMP-authorized solutions, CMMC compliance, and cleared personnel supporting defense, intelligence, and civilian agency missions.</p>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">🏥</div>
+      <h4>Healthcare & Life Sciences</h4>
+      <p>HIPAA-compliant infrastructure, AI-powered diagnostics platforms, EHR modernization, and clinical workflow automation.</p>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">🏦</div>
+      <h4>Financial Services</h4>
+      <p>PCI-DSS and SOX-compliant architecture, real-time fraud detection, core banking modernization, and regulatory reporting platforms.</p>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">🏭</div>
+      <h4>Manufacturing & Industrial</h4>
+      <p>Connected factory platforms, predictive maintenance AI, supply chain digitization, and OT/IT convergence security.</p>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">🎓</div>
+      <h4>Education & Research</h4>
+      <p>HPC clusters for research, campus network modernization, AI-powered learning platforms, and research data management.</p>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">🛒</div>
+      <h4>Retail & E-Commerce</h4>
+      <p>Omnichannel platform engineering, demand forecasting AI, supply chain visibility, and PCI-compliant payment infrastructure.</p>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">⚡</div>
+      <h4>Energy & Utilities</h4>
+      <p>OT/SCADA security, grid modernization technology, predictive asset management, and renewable energy systems integration.</p>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">✈️</div>
+      <h4>Transportation & Logistics</h4>
+      <p>Route optimization AI, fleet telematics, cargo visibility platforms, and supply chain control tower solutions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY AGISAI -->
+<section class="why">
+  <div class="why-grid">
+    <div class="why-left">
+      <div class="section-label">Why Agisai</div>
+      <div class="section-title">A Different Kind of Technology Partner</div>
+      <p class="section-body">We don't just deliver technology — we own the outcome alongside you. Our model combines deep technical expertise, global delivery capability, and a relentless commitment to results that actually move the business.</p>
+      <br/>
+      <a href="#contact" class="btn-primary" style="margin-top:8px">Start a Conversation</a>
+    </div>
+    <div class="why-right">
+      <div class="why-card featured">
+        <div class="why-card-num">01</div>
+        <h4>Outcome-Based Engagements</h4>
+        <p>We price and measure success against business outcomes — not hours billed or projects delivered. Your goals are our deliverables.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-num">02</div>
+        <h4>Global Delivery, Local Expertise</h4>
+        <p>Operations across 40+ countries backed by deep local regulatory knowledge, certified engineers, and on-the-ground implementation teams.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-num">03</div>
+        <h4>Vendor-Agnostic Architecture</h4>
+        <p>We design for what's right for you — not what any single OEM partner incentivizes. Our recommendations are driven by your requirements.</p>
+      </div>
+      <div class="why-card featured">
+        <div class="why-card-num">04</div>
+        <h4>Innovation Lab Access</h4>
+        <p>Every client gets access to the Agisai Innovation Lab — test, validate, and de-risk your technology investments before you commit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<div class="partners">
+  <div class="partners-label">Technology Partner Ecosystem — 500+ OEM Relationships</div>
+  <div class="partners-row">
+    <div class="partner-logo">Cisco</div>
+    <div class="partner-logo">Microsoft</div>
+    <div class="partner-logo">AWS</div>
+    <div class="partner-logo">Google Cloud</div>
+    <div class="partner-logo">NVIDIA</div>
+    <div class="partner-logo">VMware</div>
+    <div class="partner-logo">Palo Alto</div>
+    <div class="partner-logo">Dell</div>
+    <div class="partner-logo">NetApp</div>
+    <div class="partner-logo">CrowdStrike</div>
+  </div>
+</div>
+
+<!-- COMPANY -->
+<section class="company" id="company">
+  <div class="company-inner">
+    <div>
+      <div class="section-label">Our Company</div>
+      <div class="section-title">Built to Last.<br>Built to Lead.</div>
+      <p class="section-body" style="max-width:100%">Agisai Technology is a privately-held global technology services company founded on a simple belief: that access to world-class technology expertise should not be limited by geography, company size, or industry sector. We exist to close that gap.</p>
+      <div class="company-stats">
+        <div class="co-stat">
+          <div class="co-stat-num">2,000+</div>
+          <div class="co-stat-label">Global Employees</div>
+        </div>
+        <div class="co-stat">
+          <div class="co-stat-num">40+</div>
+          <div class="co-stat-label">Countries</div>
+        </div>
+        <div class="co-stat">
+          <div class="co-stat-num">500+</div>
+          <div class="co-stat-label">Tech Partners</div>
+        </div>
+        <div class="co-stat">
+          <div class="co-stat-num">1,800+</div>
+          <div class="co-stat-label">Enterprise Clients</div>
+        </div>
+      </div>
+    </div>
+    <div class="company-visual">
+      <div class="company-card">
+        <h3>Our Mission</h3>
+        <p>To be the technology partner that <span class="highlight">enterprises trust most</span> when the stakes are highest — delivering complex technology solutions with the speed, precision, and accountability that mission-critical environments demand.</p>
+        <p>Founded by <span class="highlight">Cory Jordan Wayne</span> and headquartered globally, Agisai Technology is one of the most ambitious Black-founded technology services companies in the world — built to compete at the highest level of the industry.</p>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-year">Year 1</div>
+            <div class="tl-text">Company founded. Core service lines launched: AI, Cloud, Cybersecurity, and Digital Transformation consulting.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">Year 2</div>
+            <div class="tl-text">Innovation Lab opens. First 100 enterprise clients. International expansion begins across EMEA and APAC.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">Year 3</div>
+            <div class="tl-text">500+ OEM partnerships. Managed services division launched. Federal / public sector practice established.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">Year 5</div>
+            <div class="tl-text">Global operations in 40+ countries. 2,000+ employees. Recognized as a top-tier global technology services company.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREERS CALLOUT -->
+<section id="careers" style="background:#080D1A;padding:80px 48px;text-align:center;border-top:1px solid rgba(0,212,255,0.06)">
+  <div class="section-label">Join Our Team</div>
+  <div class="section-title" style="max-width:600px;margin:0 auto 20px">We're Building the Future of Technology Services</div>
+  <p style="color:#8A97AB;font-size:16px;max-width:520px;margin:0 auto 40px;line-height:1.8">Agisai Technology is always looking for engineers, consultants, architects, and operators who want to work on the hardest problems in technology — at global scale.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+    <a href="#" class="btn-primary">View Open Roles</a>
+    <a href="#" class="btn-ghost">Life at Agisai</a>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section" id="contact">
+  <h2 style="position:relative">Ready to Transform<br><span style="color:#00D4FF">Your Technology?</span></h2>
+  <p>Tell us about your challenge. Our team will respond within one business day with an initial perspective and the right people to have the conversation.</p>
+  <div class="cta-actions">
+    <a href="#" class="btn-primary">Schedule a Briefing</a>
+    <a href="#" class="btn-ghost">Download Capabilities Overview</a>
+  </div>
+  <div style="margin-top:48px;display:flex;justify-content:center;gap:48px;flex-wrap:wrap">
+    <div style="text-align:center">
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#4A5568;margin-bottom:6px">Email</div>
+      <div style="font-size:14px;color:#00D4FF">contact@agisaitech.com</div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#4A5568;margin-bottom:6px">Global HQ</div>
+      <div style="font-size:14px;color:#E8ECF2">United States</div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#4A5568;margin-bottom:6px">Response Time</div>
+      <div style="font-size:14px;color:#E8ECF2">&lt; 1 Business Day</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo-text">AGISAI <span style="color:#00D4FF">TECHNOLOGY</span></span>
+      <p>A global technology services company delivering AI, cloud, cybersecurity, and digital transformation solutions to enterprise and public-sector clients worldwide.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Artificial Intelligence</a></li>
+        <li><a href="#">Cloud & Infrastructure</a></li>
+        <li><a href="#">Cybersecurity</a></li>
+        <li><a href="#">Digital Transformation</a></li>
+        <li><a href="#">Managed Services</a></li>
+        <li><a href="#">Software Development</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Agisai</a></li>
+        <li><a href="#">Innovation Lab</a></li>
+        <li><a href="#">Leadership</a></li>
+        <li><a href="#">Press & Media</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Partners</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="#">Case Studies</a></li>
+        <li><a href="#">White Papers</a></li>
+        <li><a href="#">Technology Blog</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Training & Certs</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Agisai Technology LLC. All rights reserved. Founded by Cory Jordan Wayne.</p>
+    <div style="display:flex;gap:24px">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  setTimeout(() => {
+    ring.style.left = e.clientX + 'px';
+    ring.style.top = e.clientY + 'px';
+  }, 80);
+});
+document.querySelectorAll('a,button').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.width='20px'; cursor.style.height='20px'; });
+  el.addEventListener('mouseleave', () => { cursor.style.width='12px'; cursor.style.height='12px'; });
+});
+
+// Tabs
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.background = window.scrollY > 60 ? 'rgba(5,8,15,0.97)' : 'rgba(5,8,15,0.85)';
+});
+</script>
+</body>
+</html>
